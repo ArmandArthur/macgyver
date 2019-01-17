@@ -49,12 +49,12 @@ class Checkerboard():
     def new_aiguille(self):
         position = self.verify_position_before_draw()
         print(position['x'])
-        return Object(position['x'], position['y'],'object','aiguille.png')
+        return Object(position['x'], position['y'],'object','images/aiguille.png')
     def new_ether(self):
         position = self.verify_position_before_draw()
-        return Object(position['x'], position['y'],'object','ether.png')
+        return Object(position['x'], position['y'],'object','images/ether.png')
     def new_gardien(self):
-        return Personnage(9, 8, 'gardien', 'gardien.png')
+        return Personnage(9, 8, 'gardien', 'images/gardien.png')
     def draw_objets(self):
         isComplete = False
         iteration = 0
@@ -82,11 +82,11 @@ class Checkerboard():
         for key, line  in enumerate(self.checker):
             for index, case in enumerate(line):
                 if case == 1 :
-                    self.screen.blit(pygame.image.load('wall.png').convert(), (key*20,index*20))
+                    self.screen.blit(pygame.image.load('images/wall.png').convert(), (key*20,index*20))
                 elif case == 0:
-                    self.screen.blit(pygame.image.load('wall_free.png').convert(), (key*20,index*20))
+                    self.screen.blit(pygame.image.load('images/wall_free.png').convert(), (key*20,index*20))
                 elif case == 2:
-                    self.screen.blit(pygame.image.load('depart.png').convert(), (key*20,index*20))
+                    self.screen.blit(pygame.image.load('images/depart.png').convert(), (key*20,index*20))
 
         self.update()
 
@@ -99,7 +99,7 @@ class Checkerboard():
         #pygame.draw.rect(block, 000, ((0, 0), block_pos.size))
     
     def delete_macgyver(self,macgyver):
-            self.screen.blit(pygame.image.load('wall_free.png').convert(), (macgyver.old_position_x*20,macgyver.old_position_y*20))
+            self.screen.blit(pygame.image.load('images/wall_free.png').convert(), (macgyver.old_position_x*20,macgyver.old_position_y*20))
 
     def positionIsWall(self,macgyver):
         if self.checker[macgyver.position_x][macgyver.position_y] == 1 or self.checker[macgyver.position_x][macgyver.position_y] == 2 :
@@ -157,7 +157,7 @@ class Object():
 
 
 checkerboard = Checkerboard(200,200)
-macgyver = Personnage(1,1,'heros','MacGyver.png')
+macgyver = Personnage(1,1,'heros','images/MacGyver.png')
 
 checkerboard.update_macgyver(macgyver)
 
