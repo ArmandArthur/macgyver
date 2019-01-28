@@ -9,20 +9,11 @@ import character
 lg.basicConfig(level=lg.DEBUG)
 
 def main():
-    grid_texte = grid.loading('grid.txt')
-    grid_transform = grid.transform(grid_texte)
+    maps = grid.loading('grid.txt')
     
-    grid_transform_copy  = grid_transform.copy()
-     
-    grid_free = grid.free(grid_transform_copy)
-    
-    #character_tuple_position = character.create(grid_free)
-
-    #print(character_tuple_position)
-    print(grid_transform_copy)  
-    #grid_transform = grid.set_position_character(character_tuple_position, grid_transform)
-
-    #grid.draw(grid_transform)
+    position_tuple = character.create(maps)
+    maps = grid.set_position_macgyver(position_tuple, maps)
+    grid.draw(maps)
 
 if __name__ == '__main__':
     main()
