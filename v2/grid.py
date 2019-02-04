@@ -19,6 +19,7 @@ def loading(data_file):
 	return grid
 
 def set_position_macgyver(position_tuple, maps):
+	print(position_tuple)
 	maps[position_tuple[0]][position_tuple[1]] = 'M'
 	return maps
 
@@ -31,10 +32,10 @@ def set_position_objet(position_tuple, maps):
 	return maps
 
 def get_position_macgyver(maps):
-	for (i, line) in enumerate(maps):
-		for (j, character) in enumerate(line):
+	for (y, line) in enumerate(maps):
+		for (x, character) in enumerate(line):
 			if character == 'M':
-				return(j,i)
+				return(x, y)
 
 
 def draw(maps):

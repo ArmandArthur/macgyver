@@ -4,16 +4,17 @@ import random
 number_objet_getting = 0
 
 def create(grid):
-	position_x = random.randint(0,14)
-	position_y = random.randint(0,14)
+	position_x = random.randint(0, 14)
+	position_y = random.randint(0, 14)
+	if (grid[position_x][position_y] == ' '):
+		return (position_x, position_y)
+	else:
+		return create(grid)
 
-	if (grid[position_x][position_y] != 'X' and grid[position_x][position_y] != 'M' and
-	grid[position_x][position_y] != 'O' and grid[position_x][position_y] != 'G' ) :		
-		return (position_x,position_y)
-	else :
-		create(grid)
 
 def moove(maps, direction, position):
+	""" Docstring """
+
 	global number_objet_getting
 
 	position_x = int(position[0])
@@ -22,16 +23,17 @@ def moove(maps, direction, position):
 	position_x_general = 0
 	position_y_general = 0
 
-	if(direction == 'l'):
+	# Commentaire
+	if direction == 'l':
 		position_x_general = position_x-1
 		position_y_general = position_y
-	if(direction == 'r'):
+	elif direction == 'r':
 		position_x_general = position_x+1
 		position_y_general = position_y
-	if(direction == 'u'):
+	elif direction == 'u':
 		position_x_general = position_x
 		position_y_general = position_y-1
-	if(direction == 'd'):
+	elif direction == 'd':
 		position_x_general = position_x
 		position_y_general = position_y+1
 

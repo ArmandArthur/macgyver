@@ -3,5 +3,13 @@ v1/macgyver_ressources
 v2/__pycache__
 v2/Include
 v2/Lib
-V2/Scripts
+v2/Scripts
 v2/tcl
+
+v3/__pycache__
+v3/Include
+v3/Lib
+v3/Scripts
+v3/tcl
+
+/.idea
