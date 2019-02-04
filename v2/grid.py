@@ -22,6 +22,21 @@ def set_position_macgyver(position_tuple, maps):
 	maps[position_tuple[0]][position_tuple[1]] = 'M'
 	return maps
 
+def set_position_gardien(position_tuple, maps):
+	maps[position_tuple[0]][position_tuple[1]] = 'G'
+	return maps
+
+def set_position_objet(position_tuple, maps):
+	maps[position_tuple[0]][position_tuple[1]] = 'O'
+	return maps
+
+def get_position_macgyver(maps):
+	for (i, line) in enumerate(maps):
+		for (j, character) in enumerate(line):
+			if character == 'M':
+				return(j,i)
+
+
 def draw(maps):
 	for line in maps:
 		for character in line:
