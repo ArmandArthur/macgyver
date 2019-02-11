@@ -1,57 +1,86 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import grid
-import character
-import objet
+from grid import Grid
+from character import Character
+from objet import Objet
+import pygame
 
-def main():
-    maps = grid.loading('grid.txt')
-    
-    # Mac gyver
-    position_tuple = character.create(maps)
-    maps = grid.set_position_macgyver(position_tuple, maps)
+class Main :
 
-    # Gardien
-    position_gardien = character.create(maps)
-    maps = grid.set_position_gardien(position_gardien, maps)
+    def __init__(self):
+        self.setup()
+
+    def setup(self):
+        self.grid = Grid()
+        grid = self.grid
+        maps = grid.loading('grid.txt')
+
+        self.character = Character()
+        character = self.character
+
+        # Mac gyver
+        position_macgyver = character.create('positions.txt', 'macgyver')
+        maps = grid.set_position_macgyver(position_macgyver, maps)
+
+        # Gardien
+        position_gardien = character.create('positions.txt', 'gardien')
+        maps = grid.set_position_gardien(position_gardien, maps)
+
+        self.objet = Objet()
+        objet = self.objet
+
+        # Aiguille
+        position_aiguille = objet.create(maps)
+        maps = grid.set_position_objet('aiguille',position_aiguille, maps)
+
+        # Ether
+        position_ether = objet.create(maps)
+        maps = grid.set_position_objet('ether',position_ether, maps)
+
+        # Autre
+        position_tube = objet.create(maps)
+        maps = grid.set_position_objet('tube', position_tube, maps)
 
 
-    # Aiguille
-    position_aiguille = objet.create(maps)
-    maps = grid.set_position_objet(position_aiguille, maps)
+        self.screen = pygame.display.init()
+        self.screen = pygame.display.set_mode((300,300))
+        screen = self.screen
+        grid.draw(pygame, screen, maps)
+        pygame.display.update()
 
-    # Ether
-    position_ether = objet.create(maps)
-    maps = grid.set_position_objet(position_ether, maps)
+        self.input_listener(maps)
 
-    # Autre
-    position_ether2 = objet.create(maps)
-    maps = grid.set_position_objet(position_ether2, maps)
+    def input_listener(self, maps):
+        grid = self.grid
+        character = self.character
+        screen = self.screen
 
-    grid.draw(maps)
-    input_writing(maps)
+        #screen = self.screen
+        playing = True
 
-def input_writing(maps):
-    direction = input('Entrez une direction (l,r,u,d) : ')
-    if direction in ['l', 'r', 'd', 'u']:
-        if(direction == 'l'):
-            position_macgyver = grid.get_position_macgyver(maps)
-            maps = character.moove(maps,'l',position_macgyver)
-        elif(direction == 'r'):
-            position_macgyver = grid.get_position_macgyver(maps)
-            maps = character.moove(maps,'r',position_macgyver)
-        elif(direction == 'u'):
-            position_macgyver = grid.get_position_macgyver(maps)
-            maps = character.moove(maps,'u',position_macgyver)
-        elif(direction == 'd'):
-            position_macgyver = grid.get_position_macgyver(maps)
-            maps = character.moove(maps,'d',position_macgyver)
-        grid.draw(maps)
-        input_writing(maps)   
-        
+        while playing:
+            # checkerboard.update()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    quit()
+                elif event.type == pygame.KEYDOWN:
+                    position_macgyver = grid.get_position_macgyver(maps)
+                    if event.key == pygame.K_RIGHT:
+                        maps = character.moove(maps, 'r', position_macgyver)
+                    if event.key == pygame.K_LEFT:
+                        maps = character.moove(maps, 'l', position_macgyver)
+                    if event.key == pygame.K_DOWN:
+                        maps = character.moove(maps, 'd', position_macgyver)
+                    if event.key == pygame.K_UP:
+                        maps = character.moove(maps, 'u', position_macgyver)
 
-if __name__ == '__main__':
-    main()
+                # Redraw
+                grid.draw(pygame, screen, maps)
+                pygame.display.update()
 
-r
+
+main = Main()
+
+
+
