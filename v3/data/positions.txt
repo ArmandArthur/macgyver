@@ -1,2 +1,0 @@
-macgyver 1 1
-gardien 12 12
