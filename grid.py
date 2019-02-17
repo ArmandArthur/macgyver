@@ -36,6 +36,15 @@ class Grid:
                 grid.append(maps)
         return grid
 
+    def get_position(self, maps, letter):
+        """
+            Getting the position of the element
+        """
+        for (index_y, line) in enumerate(maps):
+            for (index_x, character) in enumerate(line):
+                if character == str(letter):
+                    return (index_x, index_y)
+
     def set_position(self, name, position_tuple, maps):
         """
             Set the position of the object
@@ -52,15 +61,6 @@ class Grid:
         maps[position_tuple[0]][position_tuple[1]] = letter
         return maps
 
-    def get_position_macgyver(self, maps):
-        """
-            Getting the position of MacGyver
-        """
-        for (index_y, line) in enumerate(maps):
-            for (index_x, character) in enumerate(line):
-                if character == 'M':
-                    return (index_x, index_y)
-
     def draw(self, maps):
         """
             Set the position of the icone and load their image
@@ -73,12 +73,16 @@ class Grid:
                 elif tile == 'M':
                     self.display.draw_tile('images/MacGyver.png', index, key)
                 elif tile == 'G':
-                    self.display.draw_tile('images/gardien.png', index, key)
+                    self.display.draw_tile('images/guardian.png', index, key)
                 elif tile == ' ':
                     self.display.draw_tile('images/wall_free.png', index, key)
                 elif tile == 'N':
-                    self.display.draw_tile('images/aiguille.png', index, key)
+                    self.display.draw_tile('images/needle.png', index, key)
                 elif tile == 'E':
                     self.display.draw_tile('images/ether.png', index, key)
                 elif tile == 'T':
                     self.display.draw_tile('images/tube.png', index, key)
+                elif tile == 'D':
+                    self.display.draw_tile('images/start.png', index, key)
+                elif tile == 'A':
+                    self.display.draw_tile('images/start.png', index, key)

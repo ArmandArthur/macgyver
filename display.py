@@ -1,5 +1,6 @@
 import pygame
 
+
 class Display:
     # Here will be the instance stored.
     __instance = None
@@ -21,14 +22,13 @@ class Display:
     def init_pygame(self, macgyver, maps, grid):
         self.pygame = pygame
         self.window = pygame.display.init()
+        self.pygame.display.set_caption('MacGyver')
         self.screen = pygame.display.set_mode((300, 320))
         self.font_init = pygame.font.init()
 
         self.macgyver = macgyver
         self.maps = maps
         self.grid = grid
-
-
 
     def update(self):
         self.pygame.display.update()
@@ -48,7 +48,7 @@ class Display:
         return text_surface, text_surface.get_rect()
 
     def draw_tile(self, image, position_x, position_y):
-        self.screen.blit(self.pygame.image.load(image), [position_x*20, position_y*20])
+        self.screen.blit(self.pygame.image.load(image), [position_x * 20, position_y * 20])
 
     def listener(self):
         playing = True
@@ -58,7 +58,7 @@ class Display:
                 if event.type == self.pygame.QUIT:
                     playing = False
                 elif event.type == self.pygame.KEYDOWN:
-                    position_macgyver = self.grid.get_position_macgyver(self.maps)
+                    position_macgyver = self.grid.get_position(self.maps, 'M')
                     if event.key == self.pygame.K_RIGHT:
                         self.maps = self.macgyver.move(self.maps, 'r', position_macgyver)
                     if event.key == self.pygame.K_LEFT:
@@ -71,3 +71,4 @@ class Display:
                     # Redraw
                     self.grid.draw(self.maps)
                     self.update()
+
