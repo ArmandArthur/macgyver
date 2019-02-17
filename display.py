@@ -2,12 +2,14 @@ import pygame
 
 
 class Display:
-    # Here will be the instance stored.
+    # Instance.
     __instance = None
 
     @staticmethod
     def getInstance():
-        """ Static access method. """
+        """
+        Instance if not exist
+        """
         if Display.__instance == None:
             Display()
         return Display.__instance
