@@ -1,6 +1,6 @@
 XXXXXXXDXXXXXXX
 X      M      X
-X  XXXXXX XX  X
+X  XX XXX XX  X
 X  X   X   X  X
 X  X   X   X  X
 X  X   XXXXX  X

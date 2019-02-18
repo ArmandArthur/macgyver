@@ -64,8 +64,6 @@ class Character:
             exit()
         elif maps[position_y_general][position_x_general] == 'A' and self.nb_object_get == 3 :
             self.display.set_text('WIN')
-        elif  maps[position_y_general][position_x_general] == 'D':
-            self.display.set_text('START')
         else:
             maps[position_y][position_x] = ' '
             maps[position_y_general][position_x_general] = 'M'
