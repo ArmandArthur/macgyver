@@ -53,7 +53,7 @@ class Character:
             position_x_general = position_x
             position_y_general = position_y + 1
 
-        if maps[position_y_general][position_x_general] == 'X':
+        if maps[position_y_general][position_x_general] in ['X','D']:
             self.display.set_text("WALL")
         elif maps[position_y_general][position_x_general] in ['N', 'E', 'T']:
             self.nb_object_get = self.nb_object_get + 1
@@ -64,6 +64,7 @@ class Character:
             exit()
         elif maps[position_y_general][position_x_general] == 'A' and self.nb_object_get == 3 :
             self.display.set_text('WIN')
+            exit()
         else:
             maps[position_y][position_x] = ' '
             maps[position_y_general][position_x_general] = 'M'
