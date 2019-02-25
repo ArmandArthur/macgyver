@@ -1,0 +1,4 @@
+- Install a VirtualEnv in the project.
+-  Go to the folder with the file activate and run "source activate" for starting the VirtualEnv.
+- Run the command : "pip install -r requirements.txt" which install pygame.
+- Run the script main.py with "py main.py"
